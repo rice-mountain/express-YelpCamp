@@ -8,7 +8,7 @@ const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 
-//route
+//routea
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
 
