@@ -16,6 +16,7 @@ const validateCampground = (req, res, next) => {
   }
 };
 
+// routing
 router.get(
   "/",
   catchAsync(async (req, res) => {
