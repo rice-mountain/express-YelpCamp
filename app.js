@@ -4,13 +4,16 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const flash = require("connect-flash");
-
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 
 //route
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
+const userRoutes = require("./routes/users");
 
 //DB connection
 mongoose
@@ -54,9 +57,19 @@ const sessionConfig = {
 };
 app.use(session(sessionConfig));
 
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // // flash
 app.use(flash());
+
+// 毎回のリクエストで処理
 app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();
@@ -67,6 +80,7 @@ app.get("/", (req, res) => {
 });
 
 //route
+app.use("/", userRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/reviews", reviewRoutes);
 
