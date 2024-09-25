@@ -35,16 +35,16 @@ const seedDB = async () => {
       //   coordinates: [cities[randomCityIndex].longitude, cities[randomCityIndex].latitude],
       // },
       price,
-      image: "https://picsum.photos/800",
-      //   {
-      //     url: "https://res.cloudinary.com/dwwvtzk17/image/upload/v1632789763/YelpCamp/zqaixbeogpudzuydgspi.jpg",
-      //     filename: "YelpCamp/zqaixbeogpudzuydgspi",
-      //   },
-      //   {
-      //     url: "https://res.cloudinary.com/dwwvtzk17/image/upload/v1632789765/YelpCamp/vxoo12zm4ram21smpfay.jpg",
-      //     filename: "YelpCamp/vxoo12zm4ram21smpfay",
-      //   },
-      // ],
+      images: [
+        {
+          url: "https://res.cloudinary.com/dqzaekj6k/image/upload/v1727238393/YelpCamp/cvjk1qwfcq0byvfw4irj.png",
+          filename: "YelpCamp/cvjk1qwfcq0byvfw4irj",
+        },
+        {
+          url: "https://res.cloudinary.com/dqzaekj6k/image/upload/v1727238547/YelpCamp/grakvqnpqlzxhpao3tdf.png",
+          filename: "YelpCamp/grakvqnpqlzxhpao3tdf",
+        },
+      ],
     });
     await camp.save();
   }
